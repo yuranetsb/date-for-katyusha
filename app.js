@@ -135,7 +135,7 @@ function sharePanel() {
   panel.id = 'share-panel'; panel.className = 'share-panel'; panel.hidden = true;
   const text = answer(), url = answerUrl();
   const hint = document.createElement('p');
-  hint.textContent = url ? 'Отправь мне ответ!' : 'Отправка ссылкой станет доступна после публикации сайта. Пока можно скопировать ответ.';
+  hint.textContent = url ? 'Отправь мне ответ!' : '';
   panel.append(hint);
   if (url) {
     const links = document.createElement('div'); links.className = 'share-options';
@@ -148,15 +148,15 @@ function sharePanel() {
     }
     panel.append(links);
     const vkHint = document.createElement('p'); vkHint.className = 'share-hint';
-    vkHint.textContent = 'ВК отправит ссылку: по ней откроются все выбранные планы. Текст ответа также можно скопировать и вставить в сообщение.';
+    vkHint.textContent = '';
     panel.append(vkHint);
   }
-  panel.append(button('Скопировать ответ', async () => {
-    try { await navigator.clipboard.writeText(text); notice.textContent = 'Ответ скопирован'; }
+  panel.append(button('', async () => {
+    try { await navigator.clipboard.writeText(text); notice.textContent = ''; }
     catch {
       let field = panel.querySelector('textarea');
       if (!field) { field = document.createElement('textarea'); field.readOnly = true; field.setAttribute('aria-label', 'Текст ответа'); panel.append(field); }
-      field.value = text; field.focus(); field.select(); notice.textContent = 'Скопируй выделенный ответ и вставь в наш чат.';
+      field.value = text; field.focus(); field.select(); notice.textContent = '';
     }
   }, 'back'));
   return panel;
