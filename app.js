@@ -135,7 +135,7 @@ function sharePanel() {
   panel.id = 'share-panel'; panel.className = 'share-panel'; panel.hidden = true;
   const text = answer(), url = answerUrl();
   const hint = document.createElement('p');
-  hint.textContent = url ? 'Отправь мне ответ!' : '';
+  hint.textContent = url ? '' : '';
   panel.append(hint);
   if (url) {
     const links = document.createElement('div'); links.className = 'share-options';
