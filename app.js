@@ -3,7 +3,7 @@ const content = document.querySelector('#content');
 const bunny = document.querySelector('#bunny');
 const notice = document.querySelector('#notice');
 const places = ['Ужин в ресторане', 'СПА', 'Поездка за город', 'Пострелять в стрелковом центре «Булат»'];
-const times = ['12:00', '14:00', '16:00', '18:00', '19:00', '20:00'];
+const times = ['12:00', '14:00', '16:00', '18:00', '20:00'];
 const state = { date: '', time: '', place: '' };
 const firstDate = '2026-10-16';
 function sticker(name) {
@@ -12,7 +12,7 @@ function sticker(name) {
 }
 function availableTimes(date) {
   const day = new Date(date + 'T12:00:00+03:00').getUTCDay();
-  return day === 0 || day === 6 ? times : ['18:00', '20:00'];
+  return day === 0 || day === 6 ? times : ['19:00', '20:00'];
 }
 function earliestDate() { return today() > firstDate ? today() : firstDate; }
 
@@ -91,7 +91,7 @@ function placeStep() {
 }
 function summary() {
   const box = document.createElement('div'); box.className = 'summary';
-  for (const line of [prettyDate(), state.time + ' · Москва', state.place]) {
+  for (const line of [prettyDate(), state.time, state.place]) {
     const p = document.createElement('p'); p.textContent = line; box.append(p);
   }
   content.append(box);
@@ -119,7 +119,7 @@ function done() {
 if (!restoreAnswer()) invite();
 
 function answer() {
-  return `Да, пошли на свидание!\nДата: ${prettyDate()}\nВремя: ${state.time} (Москва)\nПланы: ${state.place}`;
+  return `Да, пошли на свидание!\nДата: ${prettyDate()}\nВремя: ${state.time}\nПланы: ${state.place}`;
 }
 function answerUrl() {
   if (!/^https?:$/.test(location.protocol)) return '';
@@ -135,7 +135,7 @@ function sharePanel() {
   panel.id = 'share-panel'; panel.className = 'share-panel'; panel.hidden = true;
   const text = answer(), url = answerUrl();
   const hint = document.createElement('p');
-  hint.textContent = url ? 'Выбери Telegram или ВК, затем наш чат и отправь ответ.' : 'Отправка ссылкой станет доступна после публикации сайта. Пока можно скопировать ответ.';
+  hint.textContent = url ? 'Отправь мне ответ!' : 'Отправка ссылкой станет доступна после публикации сайта. Пока можно скопировать ответ.';
   panel.append(hint);
   if (url) {
     const links = document.createElement('div'); links.className = 'share-options';
