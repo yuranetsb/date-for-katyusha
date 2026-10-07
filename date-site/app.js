@@ -3,7 +3,7 @@ const content = document.querySelector('#content');
 const bunny = document.querySelector('#bunny');
 const notice = document.querySelector('#notice');
 const places = ['Ужин в ресторане', 'СПА', 'Поездка за город', 'Пострелять в стрелковом центре «Булат»'];
-const times = ['12:00', '14:00', '16:00', '18:00', '19:00', '20:00'];
+const times = ['12:00', '14:00', '16:00', '18:00', '20:00'];
 const state = { date: '', time: '', place: '' };
 const firstDate = '2026-10-16';
 function sticker(name) {
@@ -12,7 +12,7 @@ function sticker(name) {
 }
 function availableTimes(date) {
   const day = new Date(date + 'T12:00:00+03:00').getUTCDay();
-  return day === 0 || day === 6 ? times : ['18:00', '20:00'];
+  return day === 0 || day === 6 ? times : ['19:00', '20:00'];
 }
 function earliestDate() { return today() > firstDate ? today() : firstDate; }
 
